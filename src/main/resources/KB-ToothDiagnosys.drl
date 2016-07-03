@@ -1,0 +1,127 @@
+package dummy;
+
+dialect "mvel"
+
+import java.util.LinkedList
+import dummy.model.*
+
+global org.slf4j.Logger logger
+
+// --------------------------------------------------------------
+
+rule "tooth have pulp necrosis"
+  when
+    ToothTest(
+      coloration == Coloration.brown || coloration == Coloration.gray,
+      kindOfPains contains KindOfPain.intense && kindOfPains contains KindOfPain.acute && kindOfPains contains KindOfPain.located,
+      coldStimulus == ColdStimulus.negative,
+      heatStimulus == HeatStimulus.negative,
+      electricalStimulation == ElectricalStimulation.negative,
+      percussionStimulation == PercussionStimulation.positive,
+      pulpState == PulpState.shattered
+    )
+  then
+    logger.info("tooth have pulp necrosis")
+end
+
+
+rule "tooth have pulp hyperemia"
+  when
+    ToothTest(
+      coloration == Coloration.normal,
+      kindOfPains contains KindOfPain.intense && kindOfPains contains KindOfPain.located,
+      coldStimulus == ColdStimulus.positive,
+      heatStimulus == HeatStimulus.positive,
+      electricalStimulation == ElectricalStimulation.positive,
+      percussionStimulation == PercussionStimulation.negative,
+      pulpState == PulpState.intact
+    )
+  then
+    logger.info("tooth have pulp hyperemia")
+end
+
+
+rule "tooth have hyperplastic pulpitis"
+  when
+    ToothTest(
+      coloration == Coloration.reddish,
+      kindOfPains contains KindOfPain.acute && kindOfPains contains KindOfPain.located,
+      coldStimulus == ColdStimulus.positive,
+      heatStimulus == HeatStimulus.negative,
+      electricalStimulation == ElectricalStimulation.negative,
+      percussionStimulation == PercussionStimulation.positive,
+      pulpState == PulpState.hypertrophied,
+      patientAge == PatientAge.young
+    )
+  then
+    logger.info("tooth hyperplastic pulpitis")
+end
+
+
+rule "tooth have pulp atrophy"
+  when
+    ToothTest(
+      coloration == Coloration.yellowish,
+      kindOfPains contains KindOfPain.noPain,
+      coldStimulus == ColdStimulus.negative,
+      heatStimulus == HeatStimulus.negative,
+      electricalStimulation == ElectricalStimulation.negative,
+      percussionStimulation == PercussionStimulation.negative,
+      pulpState == PulpState.atrophied,
+      patientAge == PatientAge.oldMan
+    )
+  then
+    logger.info("tooth pulp atrophy")
+end
+
+
+rule "tooth have acute pulpitis serosa"
+  when
+    ToothTest(
+      coloration == Coloration.normal,
+      kindOfPains contains KindOfPain.spontaneous && kindOfPains contains KindOfPain.diffuse && kindOfPains contains KindOfPain.discontinuous,
+      coldStimulus == ColdStimulus.positive,
+      heatStimulus == HeatStimulus.positive,
+      percussionStimulation == PercussionStimulation.positive,
+      pulpState == PulpState.intact
+    )
+  then
+    logger.info("acute pulpitis serosa")
+end
+
+
+rule "tooth have acute purulent pulpitis"
+  when
+    ToothTest(
+      coloration == Coloration.normal,
+      kindOfPains contains KindOfPain.spontaneous && kindOfPains contains KindOfPain.intense && kindOfPains contains KindOfPain.continuous && kindOfPains contains KindOfPain.located,
+      coldStimulus == ColdStimulus.negative,
+      heatStimulus == HeatStimulus.positive,
+      percussionStimulation == PercussionStimulation.positive,
+      pulpState == PulpState.partiallyDestroyed
+    )
+  then
+    logger.info("acute purulent pulpitis")
+end
+
+
+rule "tooth have infiltrative pulpitis"
+  when
+    ToothTest(
+      coloration == Coloration.normal,
+      kindOfPains contains KindOfPain.spontaneous && kindOfPains contains KindOfPain.located && kindOfPains contains KindOfPain.continuous,
+      coldStimulus == ColdStimulus.positive,
+      heatStimulus == HeatStimulus.positive,
+      electricalStimulation == ElectricalStimulation.positive,
+      pulpState == PulpState.shattered
+    )
+  then
+    logger.info("tooth infiltrative pulpitis")
+end
+
+
+
+
+
+
+
