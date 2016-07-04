@@ -93,10 +93,18 @@ object PatientAge {
 }
 
 
+case class Diagnosis(details: String)
 
-
-
-
+object Diagnosis {
+  val pulpNecrosis = Diagnosis("pulpNecrosis")
+  val pulpHyperemia = Diagnosis("pulpHyperemia")
+  val hyperplasticPulpitis = Diagnosis("hyperplasticPulpitis")
+  val pulpAtrophy = Diagnosis("pulpAtrophy")
+  val pulpitisSerosa = Diagnosis("pulpitisSerosa")
+  val acutePurulentPulpitis = Diagnosis("acutePurulentPulpitis")
+  val infiltrativePulpitis = Diagnosis("infiltrativePulpitis")
+  val unknown = Diagnosis("unknown")
+}
 
 
 

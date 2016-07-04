@@ -21,7 +21,7 @@ rule "tooth have pulp necrosis"
       pulpState == PulpState.shattered
     )
   then
-    logger.info("tooth have pulp necrosis")
+    insert(Diagnosis.pulpNecrosis)
 end
 
 
@@ -37,7 +37,7 @@ rule "tooth have pulp hyperemia"
       pulpState == PulpState.intact
     )
   then
-    logger.info("tooth have pulp hyperemia")
+    insert(Diagnosis.pulpHyperemia)
 end
 
 
@@ -54,7 +54,7 @@ rule "tooth have hyperplastic pulpitis"
       patientAge == PatientAge.young
     )
   then
-    logger.info("tooth hyperplastic pulpitis")
+    insert(Diagnosis.hyperplasticPulpitis)
 end
 
 
@@ -71,7 +71,7 @@ rule "tooth have pulp atrophy"
       patientAge == PatientAge.oldMan
     )
   then
-    logger.info("tooth pulp atrophy")
+    insert(Diagnosis.pulpAtrophy)
 end
 
 
@@ -86,7 +86,7 @@ rule "tooth have acute pulpitis serosa"
       pulpState == PulpState.intact
     )
   then
-    logger.info("acute pulpitis serosa")
+    insert(Diagnosis.pulpitisSerosa)
 end
 
 
@@ -101,7 +101,7 @@ rule "tooth have acute purulent pulpitis"
       pulpState == PulpState.partiallyDestroyed
     )
   then
-    logger.info("acute purulent pulpitis")
+    insert(Diagnosis.acutePurulentPulpitis)
 end
 
 
@@ -116,12 +116,16 @@ rule "tooth have infiltrative pulpitis"
       pulpState == PulpState.shattered
     )
   then
-    logger.info("tooth infiltrative pulpitis")
+    insert(Diagnosis.infiltrativePulpitis)
 end
 
 
-
-
+rule "tooth have unknown diagnosis"
+  when
+    ToothTest()
+  then
+    insert(Diagnosis.unknown)
+end
 
 
 

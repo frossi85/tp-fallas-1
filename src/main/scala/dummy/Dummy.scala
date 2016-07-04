@@ -35,12 +35,11 @@ object Dummy {
     val res = ResourceFactory.newClassPathResource(kb)
     kbuilder.add(res, ResourceType.DRL)
 
-    val errors = kbuilder.getErrors();
+    val errors = kbuilder.getErrors()
     if (errors.size() > 0) {
       for (error <- errors) logger.error(error.getMessage())
-      throw new IllegalArgumentException("Problem with the Knowledge base");
+      throw new IllegalArgumentException("Problem with the Knowledge base")
     }
-
 
     val kbase = kbuilder.newKnowledgeBase()
     

@@ -58,10 +58,44 @@ class DummyTest extends FunSuite with ShouldMatchers {
 @RunWith(classOf[JUnitRunner])
 class DummyTest extends FunSuite with ShouldMatchers {
 
+
   def model1 = {
-    val tooth1 = ToothTest(
+    val toothWithPulpNecrosis = ToothTest(
       Coloration.brown,
+      List(KindOfPain.intense, KindOfPain.acute, KindOfPain.located),
+      ColdStimulus.negative,
+      HeatStimulus.negative,
+      ElectricalStimulation.negative,
+      PercussionStimulation.positive,
+      PulpState.shattered,
+      PatientAge.oldMan
+    )
+
+    val toothWithPulpHyperemia = ToothTest(
+      Coloration.normal,
       List(KindOfPain.intense, KindOfPain.located),
+      ColdStimulus.positive,
+      HeatStimulus.positive,
+      ElectricalStimulation.positive,
+      PercussionStimulation.negative,
+      PulpState.intact,
+      PatientAge.young
+    )
+
+    val toothWithHyperplasticPulpitis = ToothTest(
+      Coloration.reddish,
+      List(KindOfPain.acute, KindOfPain.located),
+      ColdStimulus.positive,
+      HeatStimulus.negative,
+      ElectricalStimulation.negative,
+      PercussionStimulation.positive,
+      PulpState.hypertrophied,
+      PatientAge.young
+    )
+
+    val toothWithPulpAtrophy = ToothTest(
+      Coloration.yellowish,
+      List(KindOfPain.noPain),
       ColdStimulus.negative,
       HeatStimulus.negative,
       ElectricalStimulation.negative,
@@ -70,18 +104,70 @@ class DummyTest extends FunSuite with ShouldMatchers {
       PatientAge.oldMan
     )
 
+    val toothWithPulpitisSerosa = ToothTest(
+      Coloration.normal,
+      List(KindOfPain.spontaneous, KindOfPain.diffuse, KindOfPain.discontinuous),
+      ColdStimulus.positive,
+      HeatStimulus.positive,
+      ElectricalStimulation.positive,
+      PercussionStimulation.positive,
+      PulpState.intact,
+      PatientAge.oldMan
+    )
+
+    val toothWithAcutePurulentPulpitis = ToothTest(
+      Coloration.normal,
+      List(KindOfPain.spontaneous, KindOfPain.intense, KindOfPain.continuous, KindOfPain.located),
+      ColdStimulus.negative,
+      HeatStimulus.positive,
+      ElectricalStimulation.positive,
+      PercussionStimulation.positive,
+      PulpState.partiallyDestroyed,
+      PatientAge.young
+    )
+
+    val toothWithInfiltrativePulpitis = ToothTest(
+      Coloration.normal,
+      List(KindOfPain.spontaneous, KindOfPain.continuous, KindOfPain.located),
+      ColdStimulus.positive,
+      HeatStimulus.positive,
+      ElectricalStimulation.positive,
+      PercussionStimulation.positive,
+      PulpState.shattered,
+      PatientAge.young
+    )
+
+    val toothWithoutDiagnosis = ToothTest(
+      Coloration.normal,
+      List(KindOfPain.noPain),
+      ColdStimulus.negative,
+      HeatStimulus.negative,
+      ElectricalStimulation.negative,
+      PercussionStimulation.negative,
+      PulpState.intact,
+      PatientAge.young
+    )
+
     List(
-      tooth1
+      toothWithPulpNecrosis,
+      toothWithPulpHyperemia,
+      toothWithHyperplasticPulpitis,
+      toothWithPulpAtrophy,
+      toothWithPulpitisSerosa,
+      toothWithAcutePurulentPulpitis,
+      toothWithInfiltrativePulpitis,
+      toothWithoutDiagnosis
     )
   }
 
   test("fired up test") {
-    val found = Dummy.analyze(model1, "KB-ToothDiagnosys.drl")
-    val all = found collect { case x:Information => x}
-    all.foreach{i=> info(i.toString)}
+    val found = Dummy.analyze(model1, "KB-ToothDiagnosis.drl")
+    val all = found collect { case x: Diagnosis => x}
 
-    val valuableInfos = all collect { case x:InformationRemarkable => x}
-    val partialInfos = all collect { case x:InformationRequest => x}
+
+    info(all.toList.length.toString)
+
+    all.foreach{i=> info(i.toString)}
 
     /*
     valuableInfos should have size(2)
