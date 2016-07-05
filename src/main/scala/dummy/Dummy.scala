@@ -19,8 +19,13 @@ object Dummy {
     logger.warn("# test me through test cases...")
     logger.warn("run 'sbt test'")
   }
+}
 
-  def using[R, T <% { def dispose() }](getres: => T)(doit: T => R): R = {
+
+class RuleEngine() {
+  val logger = LoggerFactory.getLogger(Dummy.getClass())
+
+  private def using[R, T <% { def dispose() }](getres: => T)(doit: T => R): R = {
     val res = getres
     try doit(res) finally res.dispose
   }
@@ -42,7 +47,7 @@ object Dummy {
     }
 
     val kbase = kbuilder.newKnowledgeBase()
-    
+
     val results = using(kbase.newStatefulKnowledgeSession()) { session =>
       session.setGlobal("logger", LoggerFactory.getLogger(kb))
       model.foreach(session.insert(_))
@@ -52,5 +57,4 @@ object Dummy {
 
     results
   }
-
 }

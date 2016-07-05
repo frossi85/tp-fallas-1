@@ -6,7 +6,7 @@ scalaVersion := "2.11.8"
 
 mainClass in assembly := Some("dummy.Dummy")
 
-jarName in assembly := "dummy.jar"
+assemblyJarName in assembly := "dummy.jar"
 
 
 scalacOptions ++= Seq(
@@ -21,20 +21,28 @@ scalacOptions ++= Seq(
 
 
 libraryDependencies ++= Seq(
-    "drools-compiler",
-    "drools-core",
-    "drools-jsr94",
-    "drools-decisiontables",
-    "knowledge-api"
+  //Drools
+  "drools-compiler",
+  "drools-core",
+  "drools-jsr94",
+  "drools-decisiontables",
+  "knowledge-api"
 ).map("org.drools" % _ % "6.4.0.Final")
 
 
 libraryDependencies ++= Seq(
-  "ch.qos.logback"           % "logback-classic"   % "1.1.7",
-  "org.codehaus.janino"      % "janino"            % "2.5.16"   // For drools
-)
+  //Akka and Akka Http
+  "com.typesafe.akka" %% "akka-actor" % "2.4.7",
+  "com.typesafe.akka" %% "akka-http-core" % "2.4.7",
+  "com.typesafe.akka" %% "akka-slf4j" % "2.4.7",
+  "com.typesafe.akka" %% "akka-http-experimental" % "2.4.7",
+  "com.typesafe.akka" %% "akka-http-jackson-experimental" % "2.4.7",
+  "com.typesafe.akka" %% "akka-http-spray-json-experimental" % "2.4.7",
 
-libraryDependencies ++= Seq(
+
+  "ch.qos.logback"           % "logback-classic"   % "1.1.7",
+  "org.codehaus.janino"      % "janino"            % "2.5.16",   // For drools
+
   "org.scalatest" %% "scalatest" % "2.2.6" % "test",
   "junit"          % "junit"     % "4.12"   % "test"
 )
