@@ -1,4 +1,4 @@
-package dummy
+package detalcare
 
 import org.junit.runner.RunWith
 import org.scalatest.FunSuite
@@ -8,7 +8,7 @@ import collection.JavaConversions._
 import model._
 
 @RunWith(classOf[JUnitRunner])
-class DummyTest extends FunSuite with ShouldMatchers {
+class DiagnosticTest extends FunSuite with ShouldMatchers {
 
 
   def model1 = {
@@ -121,13 +121,6 @@ class DummyTest extends FunSuite with ShouldMatchers {
     info(all.toList.length.toString)
 
     all.foreach{i=> info(i.toString)}
-
-    /*
-    valuableInfos should have size(2)
-    partialInfos should have size(2)
-
-    partialInfos.map(_.someone.name) should contain("Martine")
-    */
   }
 
 }

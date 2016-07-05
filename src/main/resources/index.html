@@ -1,0 +1,364 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Freelancer - Start Bootstrap Theme</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link href="https://ecffd23d5dab59e671ed2fdbaf4547f6b3e40c1e.googledrive.com/host/0B9Vuev_4S_4pdzIwNjhjNk4wRWs/freelancer.min.css" rel="stylesheet" type='text/css'>
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+    queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://
+    -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <![endif]-->
+  </head><body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>Menu
+            <i class="fa fa-bars"></i>
+          </button>
+          <a class="navbar-brand" href="#page-top" data-bind="click: goToWelcome">Diagnostico Dental</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden">
+              <a href="#page-top"></a>
+            </li>
+            <li class="page-scroll">
+              <a href="#portfolio" class="btn btn-success" data-bind="click: newDiagnostic">Nuevo Diagnostico</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="row" data-bind="if: showWelcome">
+          <div class="col-lg-12">
+            <img class="img-responsive" src="https://ecffd23d5dab59e671ed2fdbaf4547f6b3e40c1e.googledrive.com/host/0B9Vuev_4S_4pdzIwNjhjNk4wRWs/profile.png" alt="">
+            <div class="intro-text">
+              <span class="name">Diagnostico Dental</span>
+              <hr class="star-light">
+              <span class="skills">La aplicación que le permite diagnosticar facilmente afecciones en piezas dentarias</span>
+            </div>
+          </div>
+        </div>
+        <div class="row" data-bind="if: showDiagnosticForm" style="margin-top: -7%;">
+          <h3>Ingrese los resultado de las pruebas</h3>
+          <div class="col-md-6 col-md-offset-3">
+            <form role="form">
+              <div class="form-group">
+                <label class="control-label">Coloración</label>
+                <select class="form-control" data-bind="options: colorationValues,
+                       optionsText: 'name',
+                       value: selectedColoration,
+                       optionsCaption: 'Elegir...'"></select>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Tipo de dolor</label>
+                <div class="checkbox">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="noPain" data-bind="checked: kindOfPains">Ninguno</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="intense" data-bind="checked: kindOfPains">Intenso</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="acute" data-bind="checked: kindOfPains">Agudo</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="located" data-bind="checked: kindOfPains">Localizado</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="diffuse" data-bind="checked: kindOfPains">Difuso</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="spontaneous" data-bind="checked: kindOfPains">Espontaneo</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="discontinuous" data-bind="checked: kindOfPains">Discontinuo</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" value="continuous" data-bind="checked: kindOfPains">Continuo</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">
+                  <label class="control-label">Estímulo al frío</label>
+                </label>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" name="coldStimulus" value="positive" data-bind="checked: coldStimulus">Positivo</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="coldStimulus" value="negative" data-bind="checked: coldStimulus">Negativo</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">
+                  <label class="control-label">Estímulo al calor</label>
+                </label>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" name="heatStimulus" value="positive" data-bind="checked: heatStimulus">Positivo</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="heatStimulus" value="negative" data-bind="checked: heatStimulus">Negativo</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">
+                  <label class="control-label">Estímulo eléctrico</label>
+                </label>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" name="electricalStimulation" value="positive" data-bind="checked: electricalStimulation">Positivo</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="electricalStimulation" value="negative" data-bind="checked: electricalStimulation">Negativo</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">
+                  <label class="control-label">Estímulo a la percusión</label>
+                </label>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" name="percussionStimulation" value="positive" data-bind="checked: percussionStimulation">Positivo</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="percussionStimulation" value="negative" data-bind="checked: percussionStimulation">Negativo</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">
+                  <label class="control-label">Estado de la pulpa</label>
+                </label>
+                <select class="form-control" data-bind="options: pulpStateValues,
+                       optionsText: 'name',
+                       value: selectedPulpState,
+                       optionsCaption: 'Elegir...'"></select>
+              </div>
+              <div class="form-group">
+                <label class="control-label">
+                  <label class="control-label">Edad paciente</label>
+                </label>
+                <div class="radio">
+                  <label class="radio-inline">
+                    <input type="radio" name="patientAge" value="young" data-bind="checked: patientAge">Joven</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="patientAge" value="" data-bind="checked: patientAge">Adulto</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="patientAge" value="oldMan" data-bind="checked: patientAge">Anciano</label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-default" data-bind="click: getDiagnosis">Diagnosticar</button>
+            </form >
+          </div>
+        </div>
+        <div data-bind="if: showDiagnosis">
+          <div class="jumbotron" style="background-color: rgba(238, 238, 238, 0.34);">
+            <h1>Diagnostico</h1>
+            <p><span data-bind="text: diagnosisResult"></span></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+    <!-- About Section -->
+    <!-- Contact Section -->
+    <!-- Footer -->
+    <footer class="text-center">
+      <div class="footer-above">
+        <div class="container">
+          <div class="row">
+            <div class="footer-col col-md-4"></div>
+            <div class="footer-col col-md-4">
+              <h3>Equipo</h3>
+              <p>Barreña Baroni, Sebastián</p>
+              <p>Rossi, Facundo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-below">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">Copyright © Your Website 2016</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen
+    sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+      <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- jQuery -->
+    <script   src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+
+    <script type = 'text/javascript'>
+
+      $(function() {
+        $.postJSON = function(url, data, callback) {
+          return $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'type': 'POST',
+            'url': url,
+            'data': JSON.stringify(data),
+            'dataType': 'json'
+          }).done(callback)
+          .fail(function(error) {
+            console.log(error);
+          });
+        };
+
+        function SelectViewModel(name, value) {
+            this.name = name;
+            this.value = value;
+        };
+
+
+
+        function MyViewModel() {
+          var self = this;
+
+          self.showWelcome = ko.observable(true);
+          self.showDiagnosticForm = ko.observable(false);
+          self.showDiagnosis = ko.observable(false);
+          self.goToWelcome = function() {
+            self.showWelcome(true);
+            self.showDiagnosticForm(false);
+            self.showDiagnosis(false);
+          };
+
+          self.newDiagnostic = function() {
+
+         /*
+          self.selectedColoration()
+            self.kindOfPains()
+            self.coldStimulus()
+            self.heatStimulus()
+            self.electricalStimulation()
+            self.percussionStimulation()
+            self.selectedPulpState()
+            self.patientAge
+
+            return formData;*/
+            self.showWelcome(false);
+            self.showDiagnosticForm(true);
+            self.showDiagnosis(false);
+          };
+          self.getDiagnosis = function() {
+            var kindOfPains = [];
+
+            for(var i = 0; i < self.kindOfPains().length; i++) {
+              kindOfPains.push({ name: self.kindOfPains()[i] });
+            }
+
+            var formData = {
+              coloration: { name: self.selectedColoration().value },
+              kindOfPains: kindOfPains,
+              coldStimulus: { name: self.coldStimulus() },
+              heatStimulus: { name: self.heatStimulus() },
+              electricalStimulation: { name: self.electricalStimulation() },
+              percussionStimulation: { name: self.percussionStimulation() },
+              pulpState: { name: self.selectedPulpState().value },
+              patientAge: { name: self.patientAge() }
+            };
+
+            $.postJSON("http://localhost:8080", formData, function(diagnosis) {
+              self.diagnosisResult(diagnosis.details)
+            });
+
+            self.showWelcome(false);
+            self.showDiagnosticForm(false);
+            self.showDiagnosis(true);
+          };
+          self.diagnosisResult = ko.observable("");
+
+          self.colorationValues = ko.observableArray([
+            new SelectViewModel("Normal", "normal"),
+            new SelectViewModel("Grisáceo", "gray"),
+            new SelectViewModel("Cafe", "brown"),
+            new SelectViewModel("Amarillenta", "yellowish"),
+            new SelectViewModel("Rojizo", "reddish")
+          ]);
+          self.selectedColoration = ko.observable(); // Nothing selected by default
+
+          self.coldStimulus = ko.observable("negative");
+          self.heatStimulus = ko.observable("negative");
+          self.electricalStimulation = ko.observable("negative");
+          self.percussionStimulation = ko.observable("negative");
+
+          self.pulpStateValues = ko.observableArray([
+            new SelectViewModel("Destruida", "shattered"),
+            new SelectViewModel("Hipertrofiada", "hypertrophied"),
+            new SelectViewModel("Atrofiada", "atrophied"),
+            new SelectViewModel("Parcialmente destruída", "partiallyDestroyed"),
+            new SelectViewModel("Íntegra", "intact")
+          ]);
+          self.selectedPulpState = ko.observable(); // Nothing selected by default
+
+
+          self.kindOfPains = ko.observableArray([]);
+          self.patientAge = ko.observable("young");
+
+
+        };
+
+        ko.applyBindings(new MyViewModel());
+      });
+
+
+    </script>
+
+    <!-- Theme JavaScript -->
+    <script type = 'text/javascript'>
+      // Freelancer Theme JavaScript
+      (function($) {
+          "use strict"; // Start of use strict
+
+
+
+          // Highlight the top nav as scrolling occurs
+          $('body').scrollspy({
+              target: '.navbar-fixed-top',
+              offset: 51
+          });
+
+          // Closes the Responsive Menu on Menu Item Click
+          $('.navbar-collapse ul li a:not(.dropdown-toggle)').click(function() {
+              $('.navbar-toggle:visible').click();
+          });
+
+          // Offset for Main Navigation
+          $('#mainNav').affix({
+              offset: {
+                  top: 100
+              }
+          })
+
+      })(jQuery); // End of use strict
+    </script>
+
+
+</body></html>

@@ -1,13 +1,22 @@
-package dummy.model
+package detalcare.model
 
-import java.util.List
-import java.util.{List=>JList,Map=>JMap}
-import collection.JavaConversions._
+import java.util.{List=>JList}
 
 
 case class ToothTest(
                       coloration: Coloration,
                       kindOfPains: JList[KindOfPain],
+                      coldStimulus: ColdStimulus,
+                      heatStimulus: HeatStimulus,
+                      electricalStimulation: ElectricalStimulation,
+                      percussionStimulation: PercussionStimulation,
+                      pulpState: PulpState,
+                      patientAge: PatientAge
+                    )
+
+case class SerializableToothTest(
+                      coloration: Coloration,
+                      kindOfPains: List[KindOfPain],
                       coldStimulus: ColdStimulus,
                       heatStimulus: HeatStimulus,
                       electricalStimulation: ElectricalStimulation,
@@ -104,7 +113,22 @@ object Diagnosis {
   val acutePurulentPulpitis = Diagnosis("acutePurulentPulpitis")
   val infiltrativePulpitis = Diagnosis("infiltrativePulpitis")
   val unknown = Diagnosis("unknown")
+
+  private val translator = Map(
+    pulpNecrosis -> Diagnosis("Necrosis Pulpar"),
+    pulpHyperemia -> Diagnosis("Hiperemia Pulpar"),
+    hyperplasticPulpitis -> Diagnosis("Pulpitis Hiperplásica"),
+    pulpAtrophy -> Diagnosis("Atrofia Pulpar"),
+    pulpitisSerosa -> Diagnosis("Pulpitis Aguda Serosa"),
+    acutePurulentPulpitis -> Diagnosis("Pulpitis Aguda Purulenta"),
+    infiltrativePulpitis -> Diagnosis("Pulpitis Infiltrativa"),
+    unknown -> Diagnosis("Desconocido o sin problemas")
+  )
+
+  def translate(diagnosis: Diagnosis): Diagnosis = translator(diagnosis)
 }
+
+
 
 
 

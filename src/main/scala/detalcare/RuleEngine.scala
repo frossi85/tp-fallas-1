@@ -1,29 +1,12 @@
-package dummy
+package detalcare
 
-import dummy.model._
-import java.io.FileInputStream
-import java.io.InputStreamReader
-import org.drools.core.audit.WorkingMemoryConsoleLogger
-import org.drools.io.Resource
+import org.drools.builder.{KnowledgeBuilderFactory, ResourceType}
 import org.drools.io.ResourceFactory
-import org.drools.builder.KnowledgeBuilderFactory
-import org.drools.builder.ResourceType
-import java.io.File
-import collection.JavaConversions._
 import org.slf4j.LoggerFactory
-
-object Dummy {
-  val logger = LoggerFactory.getLogger(Dummy.getClass())
-
-  def main(args: Array[String]) {
-    logger.warn("# test me through test cases...")
-    logger.warn("run 'sbt test'")
-  }
-}
-
+import scala.collection.JavaConversions._
 
 class RuleEngine() {
-  val logger = LoggerFactory.getLogger(Dummy.getClass())
+  val logger = LoggerFactory.getLogger(DiagnosticApp.getClass())
 
   private def using[R, T <% { def dispose() }](getres: => T)(doit: T => R): R = {
     val res = getres

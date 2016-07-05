@@ -1,9 +1,9 @@
-package dummy;
+package detalcare;
 
 dialect "mvel"
 
 import java.util.LinkedList
-import dummy.model.*
+import detalcare.model.*
 
 global org.slf4j.Logger logger
 

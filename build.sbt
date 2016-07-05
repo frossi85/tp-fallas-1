@@ -29,6 +29,7 @@ libraryDependencies ++= Seq(
   "knowledge-api"
 ).map("org.drools" % _ % "6.4.0.Final")
 
+lazy val json4sVersion = "3.3.0"
 
 libraryDependencies ++= Seq(
   //Akka and Akka Http
@@ -38,6 +39,12 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-experimental" % "2.4.7",
   "com.typesafe.akka" %% "akka-http-jackson-experimental" % "2.4.7",
   "com.typesafe.akka" %% "akka-http-spray-json-experimental" % "2.4.7",
+
+  //Json
+  "org.json4s" %% "json4s-core" % json4sVersion,
+  "org.json4s" %% "json4s-jackson" % json4sVersion,
+  "org.json4s" %% "json4s-native" % json4sVersion,
+  "de.heikoseeberger" %% "akka-http-json4s" % "1.4.1",
 
 
   "ch.qos.logback"           % "logback-classic"   % "1.1.7",
